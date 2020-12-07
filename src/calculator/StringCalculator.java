@@ -1,9 +1,12 @@
 package calculator;
 
-public class StringCalculator {
+public class StringCalculator{
+	
+	int count=0;
 
     public int add(String numbers) throws NegativeException
     {
+    	count++;	
         if(numbers.isEmpty()) {
             return 0;
         }
@@ -16,24 +19,28 @@ public class StringCalculator {
         }
         String number[]=numbers.split("["+delimeter+"|\n]");
         for (String data: number) {
-        	
         	int num=Integer.parseInt(data);
-        	
         	if(num<0)
         	{
         		throw new NegativeException("negatives not allowed "+num);
         	}
-        	else {
+        	else if(num<1001){
             sum+=num;
         	}
             //System.out.println(data);
         }
         return sum;
     }
+    
+    public int GetCalledCount()
+    {
+    	return count;
+    }
+
 
     public static void main(String[] args) {
         StringCalculator calculator=new StringCalculator();
-        //System.out.println(calculator.add("1\n2,3"));
+        System.out.println(calculator.GetCalledCount());
         //System.out.println(calculator.add("//;\\n1;2"));
     }
 
